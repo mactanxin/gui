@@ -13,20 +13,21 @@
                     "element": {"#": "main"}
                 }
             },
-
-            "introText": {
-                "prototype": "montage/ui/text.reel",
+            "console": {
+                "prototype": "ui/console.reel",
                 "properties": {
-                    "element": {"#": "introText"},
-                    "value": "FreeNAS 10 VM Serial Console"
+                    "element": {"#": "console"}
+                },
+                "bindings": {
+                    "token": {"<-": "@owner.token"}
                 }
             }
         }
     </script>
 </head>
 <body>
-    <div data-montage-id="main" data-montage-skin="light" class="Main">
-        <div data-montage-id="introText"></div>
+    <div data-montage-id="main" class="Main">
+        <div data-montage-id="console"></div>
     </div>
 </body>
 </html>
