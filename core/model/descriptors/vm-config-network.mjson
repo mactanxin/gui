@@ -1,0 +1,28 @@
+{
+  "blueprint_vmconfignetwork_management": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "management",
+      "blueprint": {"@": "root"},
+      "valueType": "String"
+    }
+  },
+  "blueprint_vmconfignetwork_nat": {
+    "prototype": "montage/core/meta/property-blueprint",
+    "properties": {
+      "name": "nat",
+      "blueprint": {"@": "root"},
+      "valueType": "String"
+    }
+  },
+  "root": {
+    "prototype": "core/model/model-descriptor",
+    "properties": {
+      "name": "VmConfigNetwork",
+      "propertyBlueprints": [
+        {"@": "blueprint_vmconfignetwork_management"},
+        {"@": "blueprint_vmconfignetwork_nat"}
+      ]
+    }
+  }
+}

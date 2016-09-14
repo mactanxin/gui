@@ -984,6 +984,15 @@
             }
         }
     },
+    "Ipfs": {
+        "class": {
+            "hashToLink": {
+                "method": "ipfs.hash_to_link",
+                "name": "call",
+                "namespace": "rpc"
+            }
+        }
+    },
     "Ipmi": {
         "class": {
             "channels": {
@@ -1722,6 +1731,16 @@
                 "name": "call",
                 "namespace": "rpc",
                 "task": "service.ftp.update"
+            }
+        }
+    },
+    "ServiceIpfs": {
+        "instance": {
+            "update": {
+                "method": "task.submit",
+                "name": "call",
+                "namespace": "rpc",
+                "task": "service.ipfs.update"
             }
         }
     },
@@ -2930,6 +2949,12 @@
                 "method": "vm.config.get_config",
                 "name": "call",
                 "namespace": "rpc"
+            },
+            "update": {
+                "method": "task.submit",
+                "name": "call",
+                "namespace": "rpc",
+                "task": "vm.config.update"
             }
         }
     },
