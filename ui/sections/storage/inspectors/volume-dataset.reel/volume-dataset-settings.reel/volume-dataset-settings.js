@@ -114,13 +114,32 @@ exports.VolumeDatasetSettings = AbstractInspector.specialize({
         }
     },
 
+    _volblocksize: {
+        value: null
+    },
+
+    volblocksize: {
+        get: function () {
+            return this._volblocksize;
+        },
+        set: function (volblocksize) {
+            if (this._volblocksize !== volblocksize) {
+                this._volblocksize = volblocksize;
+
+                if (this._canUpdateObjectProperty('volblocksize')) {
+                    this.object.properties.volblocksize.parsed = volblocksize || null;
+                }
+            }
+        }
+    },
+
     templateDidLoad: {
         value: function() {
             this.sizeUnits = Units.BYTE_SIZES;
             this.compressionOptions = this._initializePropertyOptions(COMPRESSION_OPTIONS);
             this.dedupOptions = this._initializePropertyOptions(DEDUP_OPTIONS);
             this.atimeOptions = this._initializePropertyOptions(ATIME_OPTIONS);
-            this.volblocksizeOptions = this._initializePropertyOptions(VOLBLOCKSIZE_OPTIONS);
+            this.volblocksizeOptions = _.reverse(this._initializePropertyOptions(VOLBLOCKSIZE_OPTIONS));
         }
     },
 
@@ -137,6 +156,7 @@ exports.VolumeDatasetSettings = AbstractInspector.specialize({
                 this.atime = (!this.object.properties.atime || this._isInheritedProperty(this.object.properties.atime)) ? "none": this.object.properties.atime.parsed;
                 this.quota = (this.object.properties.quota || {}).parsed;
                 this.refquota = (this.object.properties.refquota || {}).parsed;
+                this.volblocksize = (this.object.properties.volblocksize || {}).parsed;
             }
             this.volblocksizeDisplayMode = this.object._isNew ? "edit" : "display";
             this._isLoaded = true;
